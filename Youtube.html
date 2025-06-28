@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Youtube</title>
+   
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+      <style>
+        body {
+          margin: 0;
+          margin-top: 75px;
+          margin-left: 90px;
+          margin-right: 90px;
+          background-color: rgb(248, 248, 248);
+        }
+
+        
+        .header {
+          display: flex;
+          flex-direction: row;
+          height: 55px;   
+          justify-content: space-between;
+          background: white;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          border-bottom-color: rgb(218, 217, 217);
+          border-bottom-style: solid;
+          border-bottom-width: 1px;
+          z-index: 100;
+        }
+
+        .sidebar {
+          background-color: white;
+          color: black;
+          position: fixed;
+          top: 55px;
+          bottom: 0;
+          left: 0;
+          width: 75px;
+          z-index: 50;
+        }
+        .sideicon {
+          width: 25px;
+          margin-left: 25px;
+          margin-top: 17px;
+          
+        }
+        figcaption {
+          font-size: 10px;
+          text-align: center;
+          font-family: Roboto, Arial;
+          
+        }
+        .sidebaricon {
+          height: 75px;
+        }
+
+        .sidebaricon:hover {
+           background-color: rgb(238, 238, 233);
+           height: 75px;
+           cursor: pointer;
+                }
+
+        .start-section {
+          width: 170px;
+          display: flex;
+          align-items: center;
+        }
+        .hamburger {
+          height: 25px;
+          margin-left: 24px;
+        }
+        .youtubelogo {
+          height: 20px;
+          margin-left: 24px;
+        }
+        .middle-section {
+          
+          
+          margin-left: 55px;
+          margin-right: 25px;
+          max-width: 480px;
+          display: flex;
+          flex: 1;
+          align-items: center;
+          
+        }
+        .searchtab {
+         
+         width: 0;
+         height: 34px;
+         border: rgb(192, 190, 190);
+         border-style: solid;
+         border-width: 1px;
+         font-size: 17px;
+         padding-left: 13px;
+         flex: 1;
+         font-family: Roboto, Arial;
+         box-shadow: inset 5px 5px 5px rgba(0 0 0 5);
+        }
+      
+        .searchbutton {
+          height: 38px;
+          width: 60px;
+          background-color: rgb(243, 240, 240);
+          border: rgb(192, 190, 190);
+         border-style: solid;
+         border-width: 1px;
+         transition: background-color 0.15s;
+         position: relative;
+        }
+        .searchbutton .tooltip, .voice .tooltip, .uploadcontainer .tooltip, .youtubeappscontainer .tooltip, .notify .tooltip {
+          position: absolute;
+          top: 45px;
+          background-color: rgb(116, 115, 115);
+          font-size: 11px;
+          font-family: Roboto, Arial; 
+          color: white;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          padding-left: 8px;
+          padding-right: 8px;
+          border-radius: 2px;
+          opacity: 0;
+          transition: 0.15s;
+          pointer-events: none;
+          white-space: nowrap;
+         
+        }
+        .searchbutton, .voice, .uploadcontainer, .youtubeappscontainer , .notify {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .searchbutton:hover .tooltip, .voice:hover .tooltip,  .uploadcontainer:hover .tooltip, .youtubeappscontainer:hover .tooltip, .notify:hover .tooltip{
+          opacity:1;
+        }
+        .searchbutton:hover {
+          background-color: rgb(231, 228, 228);
+          font-family: Roboto, Arial;
+
+        }
+        .searchbuttonimg {
+          height: 25px;
+          width: 50px; 
+          margin-left: -3px;
+          margin-top: 2px;
+                
+        }
+        .voice {
+          height: 38px;
+          width: 38px;
+          border-radius: 25px;
+          background-color: rgb(245, 244, 244);
+          border: none;
+          margin-left: 10px;
+          position: relative;
+        }
+
+       
+        .voiceimg {
+          padding-top: 3px;
+        }
+
+        
+        .end-section {
+          
+          display: flex;
+          justify-content: space-between; 
+          align-items: center;
+          width: 180px;
+          flex-shrink: 0;
+        }
+
+        .upload {
+          height: 26px;
+        }
+        .youtubeapps {
+          height: 26px;
+            
+        }
+        .notifications {
+          
+          height: 26px;
+        }
+        .notify {
+          position: relative;
+        }
+        .notification-number {
+          
+          background-color: rgb(216, 4, 4);
+          color: white;
+          font-family: Roboto, Arial;
+          font-size: 11px;
+          font-weight: 500;
+          text-align: center;
+          padding-top: 1px;
+          width: 15px;
+          height: 14px;
+          border-radius: 8px;
+          position: absolute;
+          top: -2px;
+          right: -2px;
+        }
+        .profile {
+          height: 30px;
+         margin-right: 20px;
+          border-radius: 15px;
+        }
+        .hamburger, .youtubelogo, .searchbutton, .voice, .upload, .youtubeapps, .notify, .profile, .thumbnail, .video-title {
+          cursor: pointer;
+        }
+        .video-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr ;
+          column-gap: 15px;
+          row-gap: 20px;
+       
+          }
+
+          @medi (max-width: 750px) {
+            .video-grid {
+              grid-template-columns: 1fr 1fr;
+            }
+          }
+          
+          @medi (min-width: 1000px) {
+            .video-grid {
+              grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+          }
+
+          @medi (min-width: 751px) and (max-width: 999px ){
+            .video-grid {
+              grid-template-columns: 1fr 1fr 1fr;
+            }
+          }
+
+         .video-image {
+          position: relative;
+          z-index: 0;
+           }
+         .videotime {
+          background-color: rgba(27, 27, 27, 0.7);
+          color: white;
+          position: absolute;
+          bottom: 12px;
+          right: 8px;
+          padding-left: 3px;
+          padding-right: 3px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          border-radius: 3px;
+          font-size: 13px;
+          font-family: Roboto, Arial;
+          font-weight: 500;
+
+         }
+      
+        .thumbnail {     
+          
+          height: 230px;
+          border-radius: 18px;
+        }
+        .video-info {
+         display: grid;
+         grid-template-columns: 50px 1fr;
+        }
+      
+      .dp {
+        width: 40px;
+        border-radius: 50px;     
+        margin-top: 10px; 
+      }
+       
+      .video-title, .video-channel, .video-stat{
+        font-family: Roboto, Arial;
+        font-size: 14px;
+        
+      }
+      .video-title {
+        font-weight: 500;
+        margin-bottom: 20px;
+        width: 250px; 
+        text-decoration: none;
+        color: black;
+        
+
+        
+      }
+      .video-text {
+        margin-top: 10px;
+      }
+  
+      .video-channel, .video-stat{
+        color: rgb(131, 129, 129); 
+      }
+      .video-channel  {
+        margin-top: 10px;
+      }
+      .video-stat {
+        margin-top: -12px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="start-section" >
+        <img class="hamburger" src="Images/Icons/hamburger-menu.svg">
+        <img class="youtubelogo" src="Images/Icons/youtube-logo.svg">
+      </div>
+     
+      
+      
+      <div class="middle-section" >
+    <input class="searchtab" type="text" placeholder="Search"></input>
+    
+    <button class="searchbutton">
+      
+    <img class="searchbuttonimg" src="Images/Icons/search.svg">
+    <div class="tooltip"> Search</div></button>
+    <button class="voice">
+    <img  class="voiceimg" src="Images/Icons/voice-search-icon.svg">
+    <div class="tooltip"> Search with your voice</div></button>
+  </div>
+    
+    <div class="end-section" >
+       <div class="uploadcontainer">
+      <img class="upload" src="Images/Icons/upload.svg">
+      <div class="tooltip"> Create</div></div>
+      
+      <div class="youtubeappscontainer">
+      <img class="youtubeapps" src="Images/Icons/youtube-apps.svg">
+      <div class="tooltip"> Youtube Apps</div></div>
+      
+      <div class="notify">
+      <img class="notifications" src="Images/Icons/notifications.svg">
+    <div class="notification-number">
+      2
+    </div>
+    <div class="tooltip"> Notifications</div></div>
+      <img class="profile" src="Images/Videos/img1.jpg">
+    </div>
+    </header>
+
+    <nav class="sidebar">
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/home.svg">
+      <figcaption>Home</figcaption></div>
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/explore.svg">
+      <figcaption>Explore</figcaption></div>
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/subscriptions.svg">
+      <figcaption>Subscriptions</figcaption></div>
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/originals.svg">
+      <figcaption>Originals</figcaption></div>
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/youtube-music.svg">
+      <figcaption>Youtube Music</figcaption></div>
+      <div class="sidebaricon">
+      <img class="sideicon" src="Images/Icons/library.svg">
+      <figcaption>Library</figcaption></div>
+      </nav>
+
+    <main>
+    <section class="video-grid">
+      <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=jo0qhjVRGSs" >
+        <img class="thumbnail" src="Images/Videos/thumbnail1.png"></a>
+        <div class="videotime">
+          3:02
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp1.jpg" ></div>
+        <div class="video-text">
+        
+        <a href="https://www.youtube.com/watch?v=jo0qhjVRGSs" class="video-title"> A Day in the Life of a Remote Teacher</a>
+        <p class="video-channel">Bored Teachers</p>
+        <p class="video-stat">143K views  &#183; 4 years ago</p></div>
+      </div>
+    </div>
+    
+    
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=GEOfyMB6CZA" >
+        <img class="thumbnail" src="Images/Videos/thumbnail2.jpg"></a>
+        <div class="videotime">
+          3:07
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp2.jpg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=GEOfyMB6CZA" class="video-title"> PLASU IS BACK!!! An Epic True Love Test | Episode 7 | Plastic & Elastic | Pearle Maaney</a>
+        <p class="video-channel">Pearle Maaney</p>
+        <p class="video-stat">573K views  &#183; 1 year ago</p></div>
+      </div>
+    </div>
+    
+    
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=gZHjHv9rLlk" >
+        <img class="thumbnail" src="Images/Videos/thumbnail3.jpg"></a>
+        <div class="videotime">
+          31:10
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp3.jpg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=gZHjHv9rLlk" class="video-title">Start NEET /JEE Preparation from Secondary School | All about Foundation Course</a>
+        <p class="video-channel">Brilliant Pala-Class 10</p>
+        <p class="video-stat">410 views  &#183; 8 months ago</p></div>
+      </div>
+    </div>
+  
+
+  <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=FdxDkLGCZxo" >
+        <img class="thumbnail" src="Images/Videos/thumbnail4.jpg"></a>
+        <div class="videotime">
+          3:35
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp4.jpg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=FdxDkLGCZxo" class="video-title">Friends: Flashbacks Of The Pressures At Work (Season 6 Clip) | TBS</a>
+        <p class="video-channel">TBS</p>
+        <p class="video-stat">1.1M views  &#183; 2 years ago</p></div>
+      </div>
+    </div>
+    
+
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=IEm9X8yvivk" >
+        <img class="thumbnail" src="Images/Videos/thumbnail5.jpg"></a>
+        <div class="videotime">
+          1:50
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp5.jpg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=IEm9X8yvivk" class="video-title"> Guruvayoorambala Nadayil - Official Trailer | Prithviraj Sukumaran | Basil Joseph | Vipin Das</a>
+        <p class="video-channel">Saregama Malayalam</p>
+        <p class="video-stat">1.8M views  &#183; 9 days ago</p></div>
+      </div>
+    </div>
+  
+    
+  <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=HcOc7P5BMi4" >
+        <img class="thumbnail" src="Images/Videos/thumbnail6.jpg" ></a>
+        <div class="videotime">
+          2:06:00
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp6.jpg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=HcOc7P5BMi4" class="video-title">HTML Tutorial for Beginners | Complete HTML with Notes & Code</a>
+        <p class="video-channel">Apna College</p>
+        <p class="video-stat">13M views  &#183; 2 years ago</p></div>
+      </div>
+    </div>
+  
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=0nZuYyXET3s" >
+        <img class="thumbnail" src="Images/Videos/thumbnail-7.webp"></a>
+        <div class="videotime">
+          4:10
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp7.jpeg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=0nZuYyXET3s" class="video-title">Dubai's Crazy Underwater Train and Other Things #Only in Dubai</a>
+        <p class="video-channel">Destination Tips</p>
+        <p class="video-stat">3M views  &#183; 1 year ago</p></div>
+      </div>
+    </div>
+  
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=R2vXbFp5C9o">
+        <img class="thumbnail" src="Images/Videos/thumbnail-8.webp"></a>
+        <div class="videotime">
+          7:53
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp8.jpeg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=R2vXbFp5C9o" class="video-title">
+          How The World's Largest Cruise Ship Makes 30,000 Meals Every Day</a>
+        <p class="video-channel">Business Insider</p>
+        <p class="video-stat">14M views  &#183; 1 year ago</p></div>
+      </div>
+    </div>
+
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=fNVa1qMbF9Y">
+        <img class="thumbnail" src="Images/Videos/thumbnail-9.webp"></a>
+        <div class="videotime">
+          10:13
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp9.jpeg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=fNVa1qMbF9Y" class="video-title">Why Planes Don't Fly Over Tibet</a>
+        <p class="video-channel">RealLifeLore</p>
+        <p class="video-stat">6.6M views  &#183; 1 year ago</p></div>
+      </div>
+    </div>
+
+    <div class="video">
+      <div class="video-image">
+        <a href="https://www.youtube.com/watch?v=lFm4EM1juls">
+        <img class="thumbnail" src="Images/Videos/thumbnail-10.webp"></a>
+        <div class="videotime">
+          7:12
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="displaypic"> <img class="dp" src="Images/Videos/dp10.jpeg" ></div>
+        <div class="video-text">
+        <a href="https://www.youtube.com/watch?v=lFm4EM1juls" class="video-title">Inside The World's Biggest Passenger Plane</a>
+        <p class="video-channel">Tech Vision</p>
+        <p class="video-stat">3.7M views  &#183; 10 months ago</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+  
+  </body>
+</html>
