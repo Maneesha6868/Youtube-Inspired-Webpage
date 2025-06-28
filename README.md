@@ -1,6 +1,8 @@
 # Youtube-Inspired-Webpage
 Following my 12th-grade exams, I explored web development by designing a YouTube-style webpage using only HTML and CSS. This project was a hands-on learning experience that allowed me to recreate the layout and feel of a familiar platform purely through structural and visual design techniques.
 
+Site-Link: https://maneesha6868.github.io/Youtube-Inspired-Webpage/
+
 Objectives:
 - Understand the foundational structure of a web page using HTML
 - Replicate a recognizable layout (similar to YouTube) with CSS styling
